@@ -63,3 +63,21 @@ Optimized:   False  # O(n)
 =================================================
 
 """
+def has_duplicate_brute(nums):
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] == nums[j]:
+                return True
+    return False
+
+def has_duplicate_fast(nums):
+    seen = set()
+    for n in nums:
+        if n in seen:
+            return True
+        seen.add(n)
+    return False
+
+nums = list(map(int, input("Enter numbers separated by commas: ").split(',')))
+print("Brute Force:", has_duplicate_brute(nums))
+print("Optimized:", has_duplicate_fast(nums))
