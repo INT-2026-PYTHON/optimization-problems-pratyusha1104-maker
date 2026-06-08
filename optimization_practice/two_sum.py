@@ -87,3 +87,25 @@ O(1) time, giving an overall O(n) algorithm.
 =================================================
 
 """
+def two_sum_brute(nums, target):
+    for i in range(len(nums)):
+        for j in range(i + 1,len(nums)):
+            if nums[i] + nums[j] == target:
+                return (i, j)
+    return -1
+
+def two_sum_fast(nums, target):
+    elements = {}
+    for i in range(len(nums)):
+        x = nums[i]
+        complement = target - x
+        if complement in elements:
+            return (elements[complement], i)
+        elements[x] = i
+        
+    return -1
+
+nums = list(map(int, input("Enter numbers separated by commas: ").split(',')))
+target=int(input("Enter the value of target: "))
+print("Brute Force:", two_sum_brute(nums, target))
+print("Optimized:", two_sum_fast(nums, target))
